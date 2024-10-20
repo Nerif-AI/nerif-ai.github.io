@@ -85,7 +85,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/chivier/Nerif',
+          href: 'https://github.com/Nerif-AI/Nerif',
           label: 'GitHub',
           position: 'right',
         },
