@@ -65,22 +65,27 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true
+      }
+    },
     navbar: {
-      title: 'My Site',
+      title: 'Nerif',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Nerif Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/Nerif-AI/Nerif',
           label: 'GitHub',
           position: 'right',
         },
