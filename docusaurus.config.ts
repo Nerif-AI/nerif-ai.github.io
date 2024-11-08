@@ -3,8 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Nerif',
+  tagline: 'Program with both Python and Natural Language',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

@@ -10,32 +10,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Convert Thought to Code',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Convert your thoughts into code with LLMs. Use the power of AI to
+        generate code, test, and debug.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Easy to Use',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Nerif is designed to be easy to use. It is a simple library that allows
+        you to integrate LLMs with your Python code with no extra effort.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Stable and Reliable',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Nerif overcomes the instability of LLMs by providing a stable and
+        reliable interface for integrating LLMs with your Python code.
       </>
     ),
   },
