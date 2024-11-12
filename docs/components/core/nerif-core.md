@@ -125,6 +125,7 @@ The Nerif class evaluates the truthfulness of statements using both logits and e
 Example:
 
 ```python
+
 ```
 
 ### Nerif Match Class
@@ -147,4 +148,9 @@ The Nerif Match class selects the best matching option from a list of choices.
 Example:
 
 ```python
+
 ```
+
+### Instant Mode
+
+Some times for a super fast use, we can start a instant mode. In Nerif project, we provide 2 function to simplify the API call: `nerif` and `nerif_match`.

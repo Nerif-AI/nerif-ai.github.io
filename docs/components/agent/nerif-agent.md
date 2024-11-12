@@ -29,6 +29,21 @@ Methods:
 - `set_max_tokens(max_tokens=None|int)`: Sets the maximum tokens limit.
 - `chat(message, append=False, max_tokens=None|int)`: Sends a message and gets a response.
 
+Init:
+
+```python
+    def __init__(
+        self,
+        proxy_url: Optional[str] = None,
+        api_key: Optional[str] = None,
+        model: str = NERIF_DEFAULT_LLM_MODEL,
+        default_prompt: str = "You are a helpful assistant. You can help me by answering my questions.",
+        temperature: float = 0.0,
+        counter: NerifTokenCounter = None,
+        max_tokens: None | int = None,
+    )
+```
+
 Example:
 
 ```python
@@ -56,6 +71,18 @@ Attributes:
 Methods:
 
 - `encode(string: str) -> List[float]`: Encodes a string into an embedding vector.
+
+Init:
+```python
+def __init__(
+    self,
+    proxy_url: Optional[str] = None,
+    # base_url: Optional[str] = None,
+    api_key: Optional[str] = None,
+    model: str = "text-embedding-3-small",
+    counter: Optional[NerifTokenCounter] = None,
+):
+```
 
 Example:
 
@@ -89,6 +116,21 @@ Methods:
     Sends a message and gets a response with logits. The logprobs parameter enables logit probabilities, 
     and top_logprobs controls how many top probabilities to return.
 
+Init:
+
+```python
+def __init__(
+    self,
+    proxy_url: Optional[str] = None,
+    api_key: Optional[str] = None,
+    model: str = NERIF_DEFAULT_LLM_MODEL,
+    default_prompt: str = "You are a helpful assistant. You can help me by answering my questions.",
+    temperature: float = 0.0,
+    counter: Optional[NerifTokenCounter] = None,
+    max_tokens: int | None = None,
+):
+```
+
 Example:
 
 ```python
@@ -119,6 +161,21 @@ Methods:
 - `reset()`: Resets the conversation history.
 - `set_max_tokens(max_tokens)`: Sets the maximum response token length.
 - `chat(input: List[Any], append: bool, max_tokens: int|None) -> str`: Processes the input and returns a response.
+
+Init:
+
+```python
+def __init__(
+    self,
+    proxy_url: Optional[str] = None,
+    api_key: Optional[str] = None,
+    model: str = NERIF_DEFAULT_LLM_MODEL,
+    default_prompt: str = "You are a helpful assistant. You can help me by answering my questions.",
+    temperature: float = 0.0,
+    counter: Optional[NerifTokenCounter] = None,
+    max_tokens: int | None = None,
+):
+```
 
 Example:
 
