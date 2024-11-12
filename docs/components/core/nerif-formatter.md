@@ -1,7 +1,7 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
-
+# Nerif Format
 
 `NerifFormat` is a useful tool to transform output of LLMs to data types Python can use directly.
 
