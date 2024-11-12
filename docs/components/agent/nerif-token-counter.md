@@ -4,8 +4,29 @@ sidebar_position: 3
 
 # Nerif Token Counter
 
+Counting token consumed by specific agent or request method like `nerif()`
 
-## `NerifTokenCounter`
+## Basic Usage
+
+A counter should be create seperately, and pass it into constructor of agent class or special methods.
+
+```python
+from nerif.agent import NerifTokenCounter
+from nerif.core import nerif
+
+counter = NerifTokenCounter()
+
+if nerif("the sky is blue", counter=counter):
+    print("True")
+
+agent = nerif.agent.SimpleChatAgent(counter=counter)
+
+print(counter.model_token)
+```
+
+## Classes
+
+### `NerifTokenCounter`
 
 A class to count the token consumed by specific Agent or method.
 
@@ -36,7 +57,7 @@ print(counter.model_token)
 
 ```
 
-## `ResponseParserBase`
+### `ResponseParserBase`
 
 Base class of response parser.
 
@@ -49,7 +70,7 @@ Derived Classes:
 - `OpenAIResponseParser`: Parser for OpenAI compatible API.
 - `OllamaResponseParser`: Parser for Ollama API.
 
-## `NerifTokenConsume`
+### `NerifTokenConsume`
 
 :::warning
 
@@ -68,7 +89,7 @@ Methods:
 - `__repr__() -> str`: Prettyprint cost information.
 
 
-## `ModelCost`
+### `ModelCost`
 
 :::warning
 
