@@ -52,7 +52,7 @@ Model name:
 
 ```bash
 export OPENAI_API_KEY="..."
-export OPENAI_API_BASE="https://api.tutujin.com/v1/"
+export OPENAI_API_BASE="https://api.xxxx.com/v1/"
 ```
 
 Model name: Same with OpenAI
@@ -77,18 +77,22 @@ Model name: `ollama/xxx`
 Example: `ollama/llama3.1`
 
 
-## VLLM (TBD)
+## VLLM
 
 ```bash
-export VLLM_URL_BASE="..."
+# Default url: http://localhost:8000/v1/
+export VLLM_URL_BASE="http://localhost:8000/v1/"
+export VLLM_API_KEY="..."
 ```
 
 Model name: `vllm/xxx`
 Example: `vllm/llama3.1`
 
-## SLLM (TBD)
+## SLLM
 
 ```bash
+# Default url: http://localhost:8343/v1/
+export SLLM_URL_BASE="http://localhost:8343/v1/"
 export SLLM_API_KEY="..."
 ```
 
