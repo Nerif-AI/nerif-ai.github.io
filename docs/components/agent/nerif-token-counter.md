@@ -4,9 +4,8 @@ sidebar_position: 3
 
 # Nerif Token Counter
 
-## Counter Class
 
-### `NerifTokenCounter`
+## `NerifTokenCounter`
 
 A class to count the token consumed by specific Agent or method.
 
@@ -37,7 +36,7 @@ print(counter.model_token)
 
 ```
 
-### `ResponseParserBase`
+## `ResponseParserBase`
 
 Base class of response parser.
 
@@ -50,7 +49,7 @@ Derived Classes:
 - `OpenAIResponseParser`: Parser for OpenAI compatible API.
 - `OllamaResponseParser`: Parser for Ollama API.
 
-### `NerifTokenConsume`
+## `NerifTokenConsume`
 
 :::warning
 
@@ -69,7 +68,7 @@ Methods:
 - `__repr__() -> str`: Prettyprint cost information.
 
 
-### `ModelCost`
+## `ModelCost`
 
 :::warning
 
