@@ -91,3 +91,28 @@ class FormatVerifierInt(FormatVerifierBase):
 As we can see in the previous code, `verify` will try to convert the input into the target type directly, while `convert` will directly convert the input into the target type. If `verify` returns `False`, `match` will attempt to find the target value from the input. If it cannot find the value, it will return `None` and raise an exception.
 
 For more complex scenario, like verify and convert a list, we can let verify just return `False`, so the only method you should implement is the `match`.
+
+## Classes
+
+### `NerifFormat`
+
+Methods:
+
+`try_convert(val=str, verifier_cls=FormatVerifierBase)`: Try convert string `val` by using the verifier, if failed, raise an exception
+
+### `FormatVerifierBase`
+
+Check and extract required value from output string from LLMs. 
+
+Methods:
+
+- `verify(val=str)`: Verify if the `val` is just the expect value.
+- `convert(val=str)`: Convert `val` to expect type directly.
+- `match(val=str)`: Find expect value from `val`, and try to extract it.
+
+Derived Classes:
+
+- `FormatVerifierInt`: Extract `int` value from string.
+- `FormatVerifierFloat`: Extract `float` value from string.
+- `FormatVerifierListInt`: Extract `list[int]` value from string.
+- `FormatVerifierHumanReadableList`: Convert a human readable list to a Python `list`
