@@ -4,147 +4,51 @@ sidebar_position: 2
 
 # Nerif Log
 
-<!-- Core component in Nerif project is `nerification`, `nerif` and `nerif_match`.
+`nerif log` is the utility tool to output certain debug/info message to a file, or just printing it out.
 
-## Nerification
+# setting logs up
 
-Nerification := Not only Verification
-
-Base class: NerificationBase
-
-This class is used to verify the result of the Nerif.
-This class provides base functionality for verifying and matching values against a predefined set of possible values.
-
-Attributes:
-
-- `original_options (List[Any])`: Original list of possible values before conversion
-- `possible (List[str])`: List of possible values converted to lowercase strings 
-- `embedding (SimpleEmbeddingAgent)`: Agent used for generating embeddings
-
-Methods:
-
-- `convert(val: Any) -> str`: Converts a value to lowercase string format
-
-- `verify(val: Any) -> bool`: Checks if a value exists in the possible values list
-
-- `simple_fit(val: Any)`: Uses embeddings to find the closest matching possible value
-
-- `force_fit(val: Any, similarity="cosine")`: Uses embeddings to find the closest matching possible value
-
-Based on the base method, we implement different value check strategy:
-
-`Nerification`, `NerificationInt` and `NerificationString`
-
-Example:
+to turn on the default logger, you could use the `set_up_logging` function in `nerif.core.log`
 
 ```python
-from nerif.core import Nerification
-from nerif.core import NerificationInt
-from nerif.core import NerificationString
+import nerif.core.log as log
+log.set_up_logging(std=True)
 
-nerification = Nerification(model="text-embedding-3-large")
-
-print(nerification.simple_fit("yes, it is"))
-# result: None
-print(nerification.force_fit("yes, it is"))
-# result: True
-print(nerification.simple_fit("true"))
-# result: True
-print(nerification.force_fit("true"))
-# result: True
-
-nerification_int = NerificationInt(model="text-embedding-3-large", possible_values=[1, 233, 343])
-
-print(nerification_int.simple_fit(1))
-# result: 1
-print(nerification_int.force_fit(1))
-# result: 1
-print(nerification_int.simple_fit(233))
-# result: 233
-print(nerification_int.force_fit("The value is 233"))
-# result: 233
-print(nerification_int.simple_fit(343))
-# result: 343
-print(nerification_int.force_fit("The value is 343"))
-# result: 343
-
-nerification_string = NerificationString(model="text-embedding-3-large", possible_values=["YES", "NO"])
-
-print(nerification_string.simple_fit("yes"))
-# result: YES
-print(nerification_string.force_fit("Well, I guess you are right"))
-# result: YES
-print(nerification_string.simple_fit("no"))
-# result: NO
-print(nerification_string.force_fit("Oh, I don't think so"))
-# result: NO
+agent = agent.SimpleChatAgent()
+print(agent.chat("What is the capital of the moon?"))
 ```
 
-## Nerif & Nerif Match
+once you run the code, you should be able to see following message in your terminal:
 
-![nerif_workflow](image.png)
-
-### Overview
-
-The Nerif and Nerif Match components provide robust mechanisms for controlling and interpreting LLM outputs. They address common challenges like overly verbose responses or inconsistent formatting by using a dual-mode approach: logits mode and embedding mode.
-
-### How It Works
-
-LLM outputs can sometimes be unpredictable - they may include unnecessary pleasantries or irrelevant information. To handle this, we employ two strategies:
-
-1. **Logits Mode**
-   - Uses the LLM's logits API to get top-k most probable token outputs
-   - Faster but may be less accurate
-   - Not available on all LLM services
-
-2. **Embedding Mode**
-   - Activates if logits mode fails or is unavailable (You can also call embedding mode directly)
-   - Generates analysis of the input and compares embeddings with possible options
-   - More reliable but slower
-   - Guarantees a result in one attempt
-
-The workflow diagram above illustrates this process.
-
-### Nerif Class
-
-The Nerif class evaluates the truthfulness of statements using both logits and embedding modes.
-
-**Attributes:**
-- `model: str` - LLM model name (default: NERIF_DEFAULT_LLM_MODEL)
-- `embed_model: str` - Embedding model name (default: NERIF_DEFAULT_EMBEDDING_MODE)
-- `temperature: float` - Model temperature, defaults to 0
-- `counter: Optional[NerifTokenCounter]` - Token usage counter
-- `debug: bool` - Debug mode flag
-
-**Key Methods:**
-- `logits_mode(text: str) -> bool` - Evaluates using logits analysis
-- `embedding_mode(text: str) -> bool` - Evaluates using embedding comparison
-- `judge(text: str, max_retry: int = 3) -> bool` - Main evaluation method
-- `instance(text: str, max_retry: int = 3, model: str = NERIF_DEFAULT_LLM_MODEL, debug: bool = False) -> bool` - Creates and runs a new instance
-
-Example:
-
-```python
+```
+INFO    Nerif   2024-11-15 03:00:25,630 --------------------
+INFO    Nerif   2024-11-15 03:00:25,630 logging enabled
+DEBUG   Nerif   2024-11-15 03:00:25,631 requested with message: [{'role': 'system', 'content': 'You are a helpful assistant. You can help me by answering my questions.'}, {'role': 'user', 'content': 'What is the capital of the moon?'}]
+DEBUG   Nerif   2024-11-15 03:00:25,631 arguments of request: {'model': 'gpt-4o', 'temperature': 0.0, 'max_tokens': None}
+The Moon does not have a capital. It is a natural satellite of Earth and does not have any political or administrative divisions like a country does. There are no permanent human settlements on the Moon, so it does not have a capital city.
 ```
 
-### Nerif Match Class
+There are several optional values for setup function to play with:
+ - `out_file`: the name of the output log file. If you leave this value empty, the logger won't create a log file as we have done above.
+ - `time_stamp`: defaultly `False`, if setting it to true, filename of the log will have a time stamp at the end.
+ - `mode`: defaultly `a`, setting the writing mode to the log file as `open(filename, 'a')` does. `a` means adding new log at the end of a file, `w` means overwrite the previous content in the file with same filename from the start.
+ - `fmt`: the output format of every line of log. defaultly `%(levelname)s\t%(name)s\t%(asctime)s\t%(message)s`. please check python standard lib [documentation](https://docs.python.org/3/library/logging.html#logrecord-attributes) for logging format for more details
+ - `std`: defaultly `False`. If set to true the logger would output lines of log into standard output, which in most case is terminal
+ - `level`: the level of debug would be loaded into stdout or logfile. could be number representing log level or enum value like `logging.DEBUG`,  `logging.INFO`, and etc.
 
-The Nerif Match class selects the best matching option from a list of choices.
+# logging thing in your code
 
-**Attributes:**
-- `choices: List[str]` - Available options to match against
-- `model: str` - LLM model name (default: NERIF_DEFAULT_LLM_MODEL)
-- `embed_model: str` - Embedding model name (default: NERIF_DEFAULT_EMBEDDING_MODEL)
-- `temperature: float` - Model temperature, defaults to 0
-- `counter: Optional[NerifTokenCounter]` - Token usage counter
-
-**Key Methods:**
-- `logits_mode(text: str) -> int` - Matches using logits analysis
-- `embedding_mode(text: str) -> int` - Matches using embedding comparison
-- `match(text: str, max_retry: int = 3) -> int` - Main matching method
-- `instance(choices: List[str], text: str, max_retry: int = 5, model: str = NERIF_DEFAULT_LLM_MODEL, embed_model: str = NERIF_DEFAULT_EMBEDDING_MODEL, debug: bool = False, counter: Optional[NerifTokenCounter] = None) -> int` - Creates and runs a new instance
-
-Example:
+before logging anything in your own logger, you need to create a `logger` object to send message to correct place.
 
 ```python
-``` -->
+LOGGER = logging.getLogger("Nerif")
+```
+
+if you want to log anything somewhere in your code, write:
+
+```
+things_you_want_to_log = 114514
+LOGGER.debug("I am a formattable string %s", things_you_want_to_log)
+```
+
+you could also use `LOGGER.info()`, `LOGGER.error()` etc. as the `logger` in `logging` library, check the [documentation](https://docs.python.org/3/library/logging.html#logging.Logger.debug) for further information
