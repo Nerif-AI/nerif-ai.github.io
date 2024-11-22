@@ -2,14 +2,14 @@
 sidebar_position: 1
 ---
 
-# Nerif Agent
+# Nerif Model
 
-## Agent Class
+## Model Class
 
-### SimpleChatAgent
+### SimpleChatModel
 
-A simple agent class for the Nerif project.
-This class implements a simple chat agent for the Nerif project.
+A simple model class for the Nerif project.
+This class implements a simple chat model for the Nerif project.
 It uses OpenAI's GPT models to generate responses to user inputs.
 
 Attributes:
@@ -49,15 +49,15 @@ Example:
 ```python
 import nerif
 
-agent = nerif.agent.SimpleChatAgent()
+model = nerif.model.SimpleChatModel()
 
-print(agent.chat("What is the capital of the moon?"))
-print(agent.chat("What is the capital of the moon?", max_tokens=10))
+print(model.chat("What is the capital of the moon?"))
+print(model.chat("What is the capital of the moon?", max_tokens=10))
 ```
 
-### SimpleEmbeddingAgent
+### SimpleEmbeddingModel
 
-A simple agent class for embedding text in the Nerif project.
+A simple model class for embedding text in the Nerif project.
 This class provides text embedding functionality using OpenAI's embedding models.
 It converts text strings into numerical vector representations.
 
@@ -89,13 +89,13 @@ Example:
 ```python
 import nerif
 
-embedding_agent = nerif.agent.SimpleEmbeddingAgent()
-print(embedding_agent.encode("What is the capital of the moon?"))
+embedding_model = nerif.model.SimpleEmbeddingModel()
+print(embedding_model.encode("What is the capital of the moon?"))
 
 ```
 
-### LogitsAgent
-A simple agent for fetching logits from a model. This class provides functionality to get logit probabilities along with model responses.
+### LogitsModel
+A simple model for fetching logits from a model. This class provides functionality to get logit probabilities along with model responses.
 
 Attributes:
 
@@ -136,13 +136,13 @@ Example:
 ```python
 import nerif
 
-logits_agent = nerif.agent.LogitsAgent()
-print(logits_agent.chat("What is the capital of the moon?"))
+logits_model = nerif.model.LogitsModel()
+print(logits_model.chat("What is the capital of the moon?"))
 ```
 
-### VisionAgent
-A simple agent for vision tasks in the Nerif project.
-This class implements a vision-capable agent that can process both text and images.
+### VisionModel
+A simple model for vision tasks in the Nerif project.
+This class implements a vision-capable model that can process both text and images.
 It uses OpenAI's GPT-4 Vision models to generate responses to user inputs that include images.
 
 Attributes:
@@ -180,10 +180,10 @@ def __init__(
 Example:
 
 ```python
-from nerif.agent import MessageType, VisionAgent
+from nerif.model import MessageType, VisionModel
 
 if __name__ == "__main__":
-    vision_model = VisionAgent(model="openrouter/openai/gpt-4o-2024-08-06")
+    vision_model = VisionModel(model="openrouter/openai/gpt-4o-2024-08-06")
     vision_model.append_message(
         MessageType.IMAGE_URL,
         "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",

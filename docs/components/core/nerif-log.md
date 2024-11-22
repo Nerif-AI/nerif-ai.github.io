@@ -11,11 +11,12 @@ sidebar_position: 2
 to turn on the default logger, you could use the `set_up_logging` function in `nerif.core.log`
 
 ```python
+import nerif.model as model
 import nerif.core.log as log
 log.set_up_logging(std=True)
 
-agent = agent.SimpleChatAgent()
-print(agent.chat("What is the capital of the moon?"))
+model = model.SimpleChatModel()
+print(model.chat("What is the capital of the moon?"))
 ```
 
 once you run the code, you should be able to see following message in your terminal:

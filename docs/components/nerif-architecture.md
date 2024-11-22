@@ -10,9 +10,9 @@ This part, I will introduce core design part by part, here is a general map
 
 Let me help improve the documentation to make it more polished and comprehensive:
 
-### Nerif Agent
+### Nerif Model
 
-Like other multi-agent frameworks, Nerif Agent provides flexibility in utilizing various AI models, including multi-modal capabilities. Our framework supports models that can interact with external APIs and tools for enhanced functionality.
+Like other multi-agent frameworks, Nerif Model provides flexibility in utilizing various AI models, including multi-modal capabilities. Our framework supports models that can interact with external APIs and tools for enhanced functionality.
 
 Currently, we support fundamental AI capabilities including:
 - LLM chat models
@@ -23,7 +23,7 @@ In upcoming releases, we plan to expand support for custom models and external A
 
 ### Nerif Core
 
-The key distinction between `agent` and `core` lies in their type system implementation. While LLM/VLM models typically generate natural language outputs that require complex post-processing, Nerif Core ensures the outputs are properly typed and immediately usable in your applications.
+The key distinction between `model` and `core` lies in their type system implementation. While LLM/VLM models typically generate natural language outputs that require complex post-processing, Nerif Core ensures the outputs are properly typed and immediately usable in your applications.
 
 Our core functionality consists of six essential modules:
 

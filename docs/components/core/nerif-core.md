@@ -19,7 +19,7 @@ Attributes:
 
 - `original_options (List[Any])`: Original list of possible values before conversion
 - `possible (List[str])`: List of possible values converted to lowercase strings 
-- `embedding (SimpleEmbeddingAgent)`: Agent used for generating embeddings
+- `embedding (SimpleEmbeddingModel)`: Model used for generating embeddings
 
 Methods:
 

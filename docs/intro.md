@@ -10,17 +10,18 @@ With Nerif, you can program with both "**Human language**" and "**Python**".
 
 Example:
 ```python
-from nerif.agent import SimpleChatAgent
 from nerif.core import nerif
+from nerif.model import SimpleChatModel
+
+model = SimpleChatModel()
 
 # Use nerif judge "natural language statement"
 if nerif("the sky is blue"):
     print("True")
 else:
+    # Call a simple model
     print("No", end=", ")
-    # Call a simple agent
-    agent = SimpleChatAgent()
-    print(agent.chat("what is the color of the sky?"))
+    print(model.chat("what is the color of the sky?"))
 ```
 
 You can get start with [examples](./category/start-with-examples)
